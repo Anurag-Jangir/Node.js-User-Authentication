@@ -1,0 +1,7 @@
+The problem is that out password here is stored in a plain text so if anyone gets access to our database in any way they have all of the passwords and usernames for every single user in our database and we definitely don't want that. We want to make sure that our passwords are hashed so that even if someone gets access to our database they won't actually know what the users passwords are, this is where **bcrypt** comes in.
+
+If we hash a password and another user have the same password then the hash will be similar for every user. So it's going to return to us the exact same string which means if multiple users have the same password they're going to have the exact same hash in our database which makes it easy if the potential malicious get access to our database and they cracked one password they're able to crack every other password that looks exactly the same and has the same hash, so the way a _salt_ works is we hash our
+password but what we do is we take some kind of salt and we add it to the beginning of our password before we hash it and this salt is different for every single user. This will make out database more secure if someone gets access to it and they're not able to hash and break people's passwords because we have this salt.
+
+We just need to make sure we store this salt along with the password so when the user tries to log in we can use the same salt
+when we hash the password and luckily bcrypt takes care of all of this for us.
